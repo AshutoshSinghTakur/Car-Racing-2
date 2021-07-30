@@ -1,5 +1,7 @@
 class Game {
-  constructor(){}
+  constructor(){
+
+  }
   
   getState(){
     var gameStateRef  = database.ref('gameState');
@@ -23,4 +25,31 @@ class Game {
       form.display();
     }
   }
+  play(){
+    form.hide();
+    textSize(20);
+    text("Game Start", 120, 100);
+    Player.getPlayerInfo();
+    if(allPlayers !== undefined){
+      var y = 130;
+      for (var plr in allPlayers){
+        var x = 120;
+        if(plr === "player"+ player.index){
+          fill('red');
+        }else{
+          fill('black')
+        }
+        text(allPlayers[plr].name+ ':'+ allPlayers[plr].distance, x,y);
+        y = y+20;
+
+       }
+      }
+      if(keyDown(UP_ARROW)){
+        player.distance += 50;
+        player.update();
+
+      }
+
+  }
+
 }
